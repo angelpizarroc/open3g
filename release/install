@@ -1,0 +1,86 @@
+#!/bin/bash
+
+
+#### instalação do discador 3g open3g
+DEPENDENCIAS(){
+if [ ! "which gcc" ];
+then 
+	echo -e "Por favor instale o programa \033[1mgcc\033[0m (erro1)"
+	exit
+fi
+
+if [ ! "which pppd" ];
+then
+	echo -e "Por favor instale o \033[1mpppd\033[0m (erro1) "
+	exit
+fi
+}
+
+SUBS_VER(){
+if [ -e /etc/open3g/open3g.conf -a /etc/open3g_rx ];
+then
+	echo -e "\nVocê possui arquivos da antiga instalação do \033[1mOPEN3G\033[0m . Não existe diferença entre os arquivos de configuração da nova versão e da antiga. É aconselhável não substituir para que não se percar a taxa de bytes transmitidos. Deseja substituir? (s/N)    "
+	read REP
+	case $REP in
+		n|N|"") BASICO;;
+		s|S) NOVA_VER;;
+		*) echo -e "\nOpção inválida. Digite \033[1m"S"\033[0m para subustituir os antigos arquivo de configuração e \033[1m"N"\033[0m para manter os antigos arquivos de configuração.\n"; SUBS_VER;;
+	esac
+else
+	NOVA_VER
+fi
+} 	
+
+NOVA_VER(){
+if [ -d /etc/open3g ];
+then
+	rm -rf /etc/open3g
+fi
+mkdir /etc/open3g
+touch /etc/open3g/open3g{.conf,_rx,_tx}
+touch /var/log/open3g.log
+touch /var/log/main3g.log
+BASICO
+}
+
+
+BASICO(){
+cp -f man/open3g.8.gz /usr/share/man/man8/
+cp -f man/open3g.5.gz /usr/share/man/man5/
+gcc source/main.c source/mainlog.c source/coninfo.c source/corebase.c source/monitor.c -o /usr/sbin/open3g 2> /dev/null
+if [ "which open3g" ];
+then
+	echo "Instalação concluída"
+	chmod ug=rx /usr/sbin/open3g
+else
+	echo "Problemas durante a instalação (erro2)"
+	exit
+fi
+}
+
+SUDO(){
+echo "Deseja que o programa seja executado com o comando sudo? (Y/n)"
+read RESP
+case $RESP in
+	y) SUDOERS;;
+	n) exit;;
+	*) echo -e "\nPor favor digite \033[1m\"Y\"\033[0m para o \033[1mOPEN3G\033[0m ser executado com o comando \033[1mSUDO\033[0m e \033[1mN\033[0m para \033[1mNÃO\033[0m ser executado com o comando \033[1mSUDO\033[0m \n \n "; SUDO;;
+esac
+}
+
+SUDOERS(){
+
+if [ !  "$(cat /etc/sudoers | grep "open3g")" ];
+then
+	echo "%users ALL=NOPASSWD: /usr/sbin/open3g" >> /etc/sudoers
+	echo -e "\nPara execução do \033[1mOPEN3G\033[0m execute o seguinte comando como usuário:\n"
+	echo -e "\033[1m\"sudo open3g\"\033[0m"
+else
+	echo -e "\nPara execução do \033[1mOPEN3G\033[0m execute o seguinte comando como usuário:\n"
+	echo -e "\033[1m\"sudo open3g\"\033[0m"
+fi
+}
+
+DEPENDENCIAS
+SUBS_VER
+SUDO

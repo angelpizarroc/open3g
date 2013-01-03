@@ -1,0 +1,27 @@
+----------------------------------------------------------------
+open3G v0.4 beta - Discador 3G para Claro, Vivo, Tim, Oi e Giro
+----------------------------------------------------------------
+
+#  open3G
+#  Versão: 0.4 beta
+#  Discador 3G para Claro, Vivo, Tim, Oi e Giro
+
+---
+
+Desenvolvedores:
+
+! Joao Batista Oliveira
+! Diego Pessanha
+
+! www.nossosite.org
+! contato@nossosite.org
+
+---
+
+
+Para instalação do open3g execute como root:
+
+./install
+
+Para ajuda digite "open3g --help" ou "man open3g"
+
