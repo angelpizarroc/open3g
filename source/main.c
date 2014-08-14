@@ -41,60 +41,64 @@ int main(int argc, char *argv[]){
 	//verifica se o LOG atingiu o tamanho limite
 	logCheck();
 
-	log("------------------------------------------------");
+	logger("------------------------------------------------");
 	title();
 
 	//verifica se o usuário é o root
 	usuario();
-	log("Verificou usuário.");
+	logger("Verificou usuário.");
 
 	char c = 0;
 	int i;
 	char *this_ip;
 	for(i=0;i<argc;i++){
-		c = getopt(argc, argv, "icrdtmpzuhg");
-		if(c == -1) break;
-		switch(c){
-			case 'h':
-				help();
-				break;
-            case 'c':
-                conectar(1);
-                break;
-            case 'r':
-                instalar(2);
-                break;
-            case 'i':
-                instalar(1);
-                break;
-            case 'z':
-                zerar();
-                break;
-            case 'u':
-                limpar();
-                break;
-            case 'd':
-                desconectar();
-                break;
-            case 't':
-                trafegoTotal();
-                break;
-            case 'm':
-                findModem(2);
-                break;
-            case 'p':
-                conectar(0);
-                break;
-            case 'g':
-                this_ip = ipGet();
-                printf("@ Seu IP é: \n");
-                printf("@ > %s  \n\n", this_ip);
-                break;
-            default:
-                printf("%c : Parâmetro desconhecido.\n", c);
+            c = getopt(argc, argv, "icrdtmpzuhg");
+            if(c == -1) 
+            {
                 help();
-                exit(1);
-		}
+                break;
+            }
+            switch(c){
+                case 'h':
+                        help();
+                        break;
+                case 'c':
+                    conectar(1);
+                    break;
+                case 'r':
+                    instalar(2);
+                    break;
+                case 'i':
+                    instalar(1);
+                    break;
+                case 'z':
+                    zerar();
+                    break;
+                case 'u':
+                    limpar();
+                    break;
+                case 'd':
+                    desconectar();
+                    break;
+                case 't':
+                    trafegoTotal();
+                    break;
+                case 'm':
+                    findModem(2);
+                    break;
+                case 'p':
+                    conectar(0);
+                    break;
+                case 'g':
+                    this_ip = ipGet();
+                    printf("@ Seu IP é: \n");
+                    printf("@ > %s  \n\n", this_ip);
+                    break;
+                default:
+                    printf("%c : Parâmetro desconhecido.\n", c);
+                    help();
+                    exit(1);
+            }
 	}
     return 0;
 }

@@ -22,7 +22,7 @@
  * @since	2009-02-20
  * @desc	write to main3g.log using log('something')
  **/
-void log(char *strlog){
+void logger(char *strlog){
     if(makelog==0){
     FILE *logFile=fopen("/var/log/main3g.log","a");
     fprintf(logFile,"%s - %s: %s\n",__DATE__,__TIME__,strlog);

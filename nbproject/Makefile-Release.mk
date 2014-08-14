@@ -35,12 +35,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/1062337698/comgt.o \
-	${OBJECTDIR}/_ext/1062337698/coninfo.o \
-	${OBJECTDIR}/_ext/1062337698/corebase.o \
-	${OBJECTDIR}/_ext/1062337698/main.o \
-	${OBJECTDIR}/_ext/1062337698/mainlog.o \
-	${OBJECTDIR}/_ext/1062337698/monitor.o
+	${OBJECTDIR}/source/comgt.o \
+	${OBJECTDIR}/source/coninfo.o \
+	${OBJECTDIR}/source/corebase.o \
+	${OBJECTDIR}/source/main.o \
+	${OBJECTDIR}/source/mainlog.o \
+	${OBJECTDIR}/source/monitor.o
 
 
 # C Compiler Flags
@@ -61,41 +61,41 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/open3g
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/open3g_1
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/open3g: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/open3g_1: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/open3g ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/open3g_1 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/1062337698/comgt.o: ../open3g/./source/comgt.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1062337698
+${OBJECTDIR}/source/comgt.o: source/comgt.c 
+	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1062337698/comgt.o ../open3g/./source/comgt.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/comgt.o source/comgt.c
 
-${OBJECTDIR}/_ext/1062337698/coninfo.o: ../open3g/./source/coninfo.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1062337698
+${OBJECTDIR}/source/coninfo.o: source/coninfo.c 
+	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1062337698/coninfo.o ../open3g/./source/coninfo.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/coninfo.o source/coninfo.c
 
-${OBJECTDIR}/_ext/1062337698/corebase.o: ../open3g/./source/corebase.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1062337698
+${OBJECTDIR}/source/corebase.o: source/corebase.c 
+	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1062337698/corebase.o ../open3g/./source/corebase.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/corebase.o source/corebase.c
 
-${OBJECTDIR}/_ext/1062337698/main.o: ../open3g/./source/main.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1062337698
+${OBJECTDIR}/source/main.o: source/main.c 
+	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1062337698/main.o ../open3g/./source/main.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/main.o source/main.c
 
-${OBJECTDIR}/_ext/1062337698/mainlog.o: ../open3g/./source/mainlog.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1062337698
+${OBJECTDIR}/source/mainlog.o: source/mainlog.c 
+	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1062337698/mainlog.o ../open3g/./source/mainlog.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/mainlog.o source/mainlog.c
 
-${OBJECTDIR}/_ext/1062337698/monitor.o: ../open3g/./source/monitor.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1062337698
+${OBJECTDIR}/source/monitor.o: source/monitor.c 
+	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1062337698/monitor.o ../open3g/./source/monitor.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/monitor.o source/monitor.c
 
 # Subprojects
 .build-subprojects:
@@ -103,7 +103,7 @@ ${OBJECTDIR}/_ext/1062337698/monitor.o: ../open3g/./source/monitor.c
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/open3g
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/open3g_1
 
 # Subprojects
 .clean-subprojects:

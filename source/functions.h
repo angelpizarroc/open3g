@@ -39,7 +39,7 @@ int monitorar(int persist);
 char *ipGet();
 
 //mainlog.c - Log System
-void log(char *strlog);
+void logger(char *strlog);
 int logCheck();
 
 //coninfo.c - Connections information

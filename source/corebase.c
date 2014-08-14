@@ -22,7 +22,7 @@ char DESCR[] = "Discador 3G";
 
 int desconectar(){
     printf("\nDesconectando...\n");
-    log("Desconectando.");
+    logger("Desconectando.");
     //char id[]="kill -15 ", busc[10]="vazio", resultado[20];
     int o;
     //printf("pppd PID: %d\n\n",pppID);
@@ -42,14 +42,14 @@ int desconectar(){
     } else {
         //o = system(resultado);
     	o = kill(pppID,SIGTERM);
-        log("Enviado o comando para encerrar o pppd. (functions.desconectar)");
+        logger("Enviado o comando para encerrar o pppd. (functions.desconectar)");
         if(o==0) exit(0);
-        log("Abrindo o LOG do PID novamente. (functions.desconectar)");
+        logger("Abrindo o LOG do PID novamente. (functions.desconectar)");
         //strcpy(id,"kill -9 ");
         //sprintf(resultado,"%s%s",id,busc);
         //system(resultado);
         o = kill(pppID,SIGTERM);
-        log("Forçando encerramento do pppd. (functions.desconectar)");
+        logger("Forçando encerramento do pppd. (functions.desconectar)");
         exit(0);
     }
 }
@@ -59,7 +59,7 @@ int findMod(){
     FILE *mod2=fopen("/dev/ttyUSB0","r");
     FILE *mod3=fopen("/dev/ttyACM1","r");
     FILE *mod4=fopen("/dev/ttyUSB1","r");
-    log("Modem: Tentando localizar em tty USB/ACM 0/1. (functions.findMod)");
+    logger("Modem: Tentando localizar em tty USB/ACM 0/1. (functions.findMod)");
     printf("Localizando o modem: ");
 
     if(mod1==NULL){
@@ -67,30 +67,30 @@ int findMod(){
             if(mod3==NULL){
                 if(mod4==NULL){
                     printf("Modem nao encontrado. Tente novamente.\n");
-                    log("ERRO: Modem NÃO encontrado em nenhum tty. (functions.findMod)");
+                    logger("ERRO: Modem NÃO encontrado em nenhum tty. (functions.findMod)");
                     exit(0);
                 }
                 else{
                     printf("Modem encontrado em /dev/ttyUSB1.\n");
-                    log("Modem encontrado em /dev/ttyUSB1. (functions.findMod)");
+                    logger("Modem encontrado em /dev/ttyUSB1. (functions.findMod)");
                     return 4;
                 }
             }
             else{
                 printf("Modem encontrado em /dev/ttyACM1.\n");
-                log("Modem encontrado em /dev/ttyACM1. (functions.find-mod)");
+                logger("Modem encontrado em /dev/ttyACM1. (functions.find-mod)");
                 return 3;
             }
         }
         else{
             printf("Modem encontrado em /dev/ttyUSB0.\n");
-            log("Modem encontrado em /dev/ttyUSB0. (functions.findMod)");
+            logger("Modem encontrado em /dev/ttyUSB0. (functions.findMod)");
             return 2;
         }
     }
     else{
         printf("Modem encontrado em /dev/ttyACM0.\n");
-        log("Modem encontrado em /dev/ttyACM0. (functions.findMod)");
+        logger("Modem encontrado em /dev/ttyACM0. (functions.findMod)");
         return 1;
     }
 }
@@ -99,17 +99,17 @@ int findModem(int par){
     char buffer[501], *resulta;
     int ch;
     printf("\nEncontrando seu modem...");
-    log("Encontrando seu modem. (functions.findModem)");
+    logger("Encontrando seu modem. (functions.findModem)");
     system("lsusb > /var/log/open3g.log");
-    log("Jogando dados dos dispositivos para log. (functions.findModem)");
+    logger("Jogando dados dos dispositivos para log. (functions.findModem)");
     FILE *oplog=fopen("/var/log/open3g.log","r");
     while(fgets(buffer,501,oplog)!=NULL){
         resulta = strstr(buffer,"0fce:d0cf");
-        log("Buscando no LOG. (functions.findModem)");
+        logger("Buscando no LOG. (functions.findModem)");
         if (resulta!=NULL){
             printf("OK\n\n");
             printf("Sony Ericsson MD300 encontrado.\n");
-            log("Sony Ericsson MD300 encontrado. (functions.findModem)");
+            logger("Sony Ericsson MD300 encontrado. (functions.findModem)");
             if(par==1){
             printf("Escrevendo regras para udev...");
             FILE *rules;
@@ -126,7 +126,7 @@ int findModem(int par){
             fclose(rules);
             printf("OK.\n");
             printf("Reiniciando UDEV...");
-            log("Regras para UDEV escritas. (functions.findModem)");
+            logger("Regras para UDEV escritas. (functions.findModem)");
             //system("service udev restart");
             //sleep(30);
             printf("OK.\n");
@@ -139,7 +139,7 @@ int findModem(int par){
             if (resulta!=NULL){
             printf("OK\n\n");
             printf("Huawei E220 encontrado.\n");
-            log("Modem Huawei E220 encontrado. (functions.findModem)");
+            logger("Modem Huawei E220 encontrado. (functions.findModem)");
             if(par==1){
             printf("Escrevendo regras para udev...");
             FILE *rules;
@@ -157,7 +157,7 @@ int findModem(int par){
             printf("OK.\n");
             printf("Reiniciando UDEV...");
             system("service udev restart");
-            log("Regras para UDEV escritas. (functions.findModem)");
+            logger("Regras para UDEV escritas. (functions.findModem)");
             sleep(30);
             printf("OK.\n");
             return 2;
@@ -167,7 +167,7 @@ int findModem(int par){
                 if (resulta!=NULL){
                 printf("OK\n\n");
                 printf("Onda Communication MSA501HS encontrado.\n");
-                log("Onda Communication MSA501HS encontrado. (functions.findModem)");
+                logger("Onda Communication MSA501HS encontrado. (functions.findModem)");
                 if(par==1){
                 printf("Escrevendo regras para udev...");
                 FILE *rules;
@@ -187,7 +187,7 @@ int findModem(int par){
                 printf("OK.\n");
                 printf("Reiniciando UDEV...");
                 system("service udev restart");
-                log("Regras para UDEV escritas. (functions.findModem)");
+                logger("Regras para UDEV escritas. (functions.findModem)");
                 sleep(30);
                 printf("OK.\n");
                 return 2;
@@ -197,7 +197,7 @@ int findModem(int par){
                     if (resulta!=NULL){
                     printf("OK\n\n");
                     printf("Modem BandLuxe C120 encontrado.\n");
-                    log("Modem BandLuxe C120 encontrado. (functions.findModem)");
+                    logger("Modem BandLuxe C120 encontrado. (functions.findModem)");
                     if(par==1){
                     printf("Escrevendo regras para udev...");
                     FILE *rules;
@@ -211,7 +211,7 @@ int findModem(int par){
                     printf("OK.\n");
                     printf("Reiniciando UDEV...");
                     system("service udev restart");
-                    log("Regras para UDEV escritas. (functions.findModem)");
+                    logger("Regras para UDEV escritas. (functions.findModem)");
                     sleep(30);
                     printf("OK.\n");
                     return 2;
@@ -227,7 +227,7 @@ int findModem(int par){
     }
     printf("Modem nao suportado nativamente.\n");
     printf("Forcando a deteccao do modem...\n");
-    log("ERRO: Modem não detectado. Buscar em /dev. (functions.findModem)");
+    logger("ERRO: Modem não detectado. Buscar em /dev. (functions.findModem)");
     ch = findMod();
     if(ch==1) return 1;
     if(ch==2) return 2;
@@ -238,7 +238,7 @@ int findModem(int par){
 
 int conectar(int reconectar){
     printf("@ Conectando...\n");
-    log("Conectando. (functions.conectar)");
+    logger("Conectando. (functions.conectar)");
     char buff[100],op_usr[100]="",op_pwd[100]="",op_apn[100]="",op_nbr[100]="";
     //char *opts[20];
     char op_op1[21]="",op_op2[21]="",op_op3[21]="",op_op4[21]="",op_op5[21]="";
@@ -356,16 +356,16 @@ int conectar(int reconectar){
         	//int childExitStatus;
         	//pid_t ws = waitpid( pID, &childExitStatus, 0);
         	sleep(15);
-			log("Comando pppd enviado. (functions.conectar)");
+			logger("Comando pppd enviado. (functions.conectar)");
 			//verifica se pegou IP
 			conf=fopen("/var/log/open3g.log","w");
 			fclose(conf);
 			system("echo \"`ifconfig ppp0 | grep inet | cut -d \":\" -f 2 | tr -d a-z,A-Z,-`\" > /var/log/open3g.log &");
 			sleep(3);
-			log("IP escrito no log. (functions.conectar)");
+			logger("IP escrito no log. (functions.conectar)");
 			conf=fopen("/var/log/open3g.log","r");
 			fgets(buff, 16, conf);
-			log("Recuperado IP gravado no log. (functions.conectar)");
+			logger("Recuperado IP gravado no log. (functions.conectar)");
 			fclose(conf);
 			if (strlen(buff)>7){
 			    if (reconectar==1) monitorar(1);
@@ -384,7 +384,7 @@ int conectar(int reconectar){
 }
 
 int instalar(int option){
-    log("Instalar. (functions.instalar)");
+    logger("Instalar. (functions.instalar)");
     int opc, pap_chap = 0;
     char modem[21], oper[21],usr[100],pwd[100],apn[100],nbr[100];
     if (option==1){
@@ -396,7 +396,7 @@ int instalar(int option){
     if(opc==2) strcpy(modem,"/dev/ttyUSB0");
     if(opc==3) strcpy(modem,"/dev/ttyACM1");
     if(opc==4) strcpy(modem,"/dev/ttyUSB1");
-    log("Modem encontrado. (functions.instalar)");
+    logger("Modem encontrado. (functions.instalar)");
 
     menu1:
         printf("\nQual sua operadora?\n\n");
@@ -486,7 +486,7 @@ int instalar(int option){
             default:
                 goto menu1;
         }
-        log("Operadora selecionada. (functions.instalar)");
+        logger("Operadora selecionada. (functions.instalar)");
         printf("\n---------------------------------\n");
         printf("\nLimpando logs anteriores...");
         FILE *chk=fopen("/etc/open3g/open3g.conf","r");
@@ -508,7 +508,7 @@ int instalar(int option){
             }
         }
         printf("OK\n");
-        log("Arquivos anteriores apagados. (functions.instalar)");
+        logger("Arquivos anteriores apagados. (functions.instalar)");
 
         FILE *abre;
         abre=fopen("/var/log/open3g.log","w");
@@ -518,11 +518,11 @@ int instalar(int option){
         abre=fopen("/etc/open3g/open3g_rx","w");
         fclose(abre);
         abre=fopen("/etc/open3g/open3g.conf","w");
-        log("Arquivos novos criados. (functions.instalar)");
+        logger("Arquivos novos criados. (functions.instalar)");
 
         if(abre==NULL){
             printf("Nao fo possivel abrir o arquivo de configuracao.\n\n");
-            log("ERRO: Não fo possivel abrir o arquivo de configuração. (functions.instalar)");
+            logger("ERRO: Não fo possivel abrir o arquivo de configuração. (functions.instalar)");
             exit(0);
         }
         else{
@@ -555,7 +555,7 @@ int instalar(int option){
 
     printf("Configuracao concluida.\n");
     printf("Para conectar: [open3g -c] ou [open3g -p]\n\n");
-    log("Configuração concluída. (functions.instalar)");
+    logger("Configuração concluída. (functions.instalar)");
     return 0;
 }
 
@@ -565,7 +565,7 @@ int usuario(){
       if (isroot != 0)
         {
           printf("O programa precisa ser executado como root.\n");
-          log("ERRO: Usuário não é o root. (functions.usuario)");
+          logger("ERRO: Usuário não é o root. (functions.usuario)");
           exit(0);
       }
       return 0;
@@ -587,7 +587,7 @@ int zerar(){
         //system("echo \"0\" > /etc/open3g/open3g_rx");
         //system("echo \"0\" > /etc/open3g/open3g_tx");
         printf("\n\nLogs e contadores zerados com sucesso.\n\n");
-        log("Logs e contadores zerados. (functions.zerar)");
+        logger("Logs e contadores zerados. (functions.zerar)");
 	exit(0);
     }
     else {

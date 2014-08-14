@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=open3g
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/open3g
+CND_ARTIFACT_NAME_Debug=open3g_1
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/open3g_1
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=open3g.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/open3g.tar
+CND_PACKAGE_NAME_Debug=open3g1.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/open3g1.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=open3g
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/open3g
+CND_ARTIFACT_NAME_Release=open3g_1
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/open3g_1
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=open3g.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/open3g.tar
+CND_PACKAGE_NAME_Release=open3g1.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/open3g1.tar
 #
 # include compiler specific variables
 #

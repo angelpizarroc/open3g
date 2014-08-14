@@ -31,7 +31,7 @@ int trafego(){
         printf("\033[2A");
         printf("\033[K");
         printf("Erro ao abrir arquivo log de dados.");
-        log("ERRO: Não foi possível abrir arquivo tx de log de dados do ppp. (coninfo.trafego)");
+        logger("ERRO: Não foi possível abrir arquivo tx de log de dados do ppp. (coninfo.trafego)");
         return 0;
     }
     fgets(trbytes, 101, pppstat);
@@ -42,7 +42,7 @@ int trafego(){
         printf("\033[2A");
         printf("\033[K");
         printf("\nErro ao abrir arquivo log de dados.\n\n");
-        log("ERRO: Não foi possível abrir arquivo tx de log de dados do discador. (coninfo.trafego)");
+        logger("ERRO: Não foi possível abrir arquivo tx de log de dados do discador. (coninfo.trafego)");
         return 0;
     }
     fgets(trbytes, 101, pppstat);
@@ -58,7 +58,7 @@ int trafego(){
         printf("\033[2A");
         printf("\033[K");
         printf("\nErro ao abrir arquivo log de dados.\n\n");
-        log("ERRO: Não foi possível abrir arquivo rx de log de dados do ppp. (coninfo.trafego)");
+        logger("ERRO: Não foi possível abrir arquivo rx de log de dados do ppp. (coninfo.trafego)");
         return 0;
     }
     fgets(trbytes,101,pppstat);
@@ -69,7 +69,7 @@ int trafego(){
         printf("\033[2A");
         printf("\033[K");
         printf("\nErro ao abrir arquivo log de dados.\n\n");
-        log("ERRO: Não foi possível abrir arquivo rx de log de dados do discador. (coninfo.trafego)");
+        logger("ERRO: Não foi possível abrir arquivo rx de log de dados do discador. (coninfo.trafego)");
         return 0;
     }
     fgets(trbytes,101,pppstat);

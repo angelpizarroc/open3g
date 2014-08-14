@@ -56,27 +56,27 @@ int monitorar(int persist){
     FILE *mon;
     int alive =1;
     printf("\n@ Data: %s Hora: %s\n",__DATE__,__TIME__);
-    log("Inicializando Monitor. (monitor.monitorar)");
+    logger("Inicializando Monitor. (monitor.monitorar)");
     //sleep(10);
     //IPGET:
     system("echo \"`ifconfig ppp0 | grep inet | cut -d \":\" -f 2 | tr -d a-z,A-Z,-`\" > /var/log/open3g.log &");
     sleep(3);
-    log("IP escrito no log. (monitor.monitorar)");
+    logger("IP escrito no log. (monitor.monitorar)");
     mon=fopen("/var/log/open3g.log","r");
     fgets(line, 16, mon);
-    log("Recuperado IP gravado no log. (monitor.monitorar)");
+    logger("Recuperado IP gravado no log. (monitor.monitorar)");
     printf("@ Seu IP é: %s\n",line);
     printf("@ pppd PIP: %d",pppID);
     fclose(mon);
     printf("\n\nTic-tac... Monitorando conexao...\n\n\n\n");
-    log("Monitorando Conexão. (monitor.monitorar)");
+    logger("Monitorando Conexão. (monitor.monitorar)");
     while(alive==1){
         system("ps aux | grep pppd > /var/log/open3g.log &");
         sleep(5);
         mon=fopen("/var/log/open3g.log","r");
         if(mon==NULL){
             printf("\n\nNao foi possivel abrir o log.\n\n");
-            log("ERRO: Não possível abrir o log. (monitor.monitorar)");
+            logger("ERRO: Não possível abrir o log. (monitor.monitorar)");
         }
         else{
             fgets(line,201,mon);
@@ -85,7 +85,7 @@ int monitorar(int persist){
             sleep(5);
             if(re==NULL){
                 printf("\n@A conexao caiu.\n");
-                log("A conexão caiu. (monitor.monitorar)");
+                logger("A conexão caiu. (monitor.monitorar)");
                 if(persist==1) {
                 	kill(i,SIGTERM);
                     alive=0;
